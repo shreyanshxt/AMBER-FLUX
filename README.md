@@ -1,8 +1,8 @@
-# 🌐 Agent Discovery & Usage Platform
+## Agent Discovery & Usage Platform
 
 This project implements a mini-platform for registering agents, searching for them semantically, and tracking their usage with idempotency.
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Prerequisites
 - Python 3.10+
@@ -20,13 +20,13 @@ This project implements a mini-platform for registering agents, searching for th
 
 ---
 
-## 🧠 Design Questions (Part 5)
+##  Questions (Part 5)
 
 ### 1. How to support billing without double charging?
-To prevent double charging, we use **Idempotency Keys** (implemented as `request_id` in this project).
+To prevent double charging we use **Idempotency Keys** (implemented as `request_id` in this project).
 - **Client-Side**: Every billing request must include a unique `request_id`.
 - **Server-Side**: Before processing a charge, the system checks a distributed cache (like Redis) for that `request_id`.
-- **Atomic Operations**: We use a "Check-and-Set" pattern or a unique constraint in the database. If the ID exists, we return the cached response (success) without re-calculating or re-charging.
+- **Atomic Operations**: We use a "Check-and-Set" pattern or a unique constraint in the database. If the ID exists, we return the cached response (success) without recalculating or reCharging.
 - **Transaction Logs**: Every successful transaction is logged in an immutable ledger before the user's balance is updated.
 
 ### 2. How to scale system to 100K agents?
